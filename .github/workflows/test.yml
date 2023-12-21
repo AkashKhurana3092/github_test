@@ -35,7 +35,5 @@ jobs:
       run: |
         wget https://packages.chef.io/files/stable/chef-workstation/23.12.1055/ubuntu/22.04/chef-workstation_23.12.1055-1_amd64.deb; sudo dpkg -i chef-workstation_23.12.1055-1_amd64.deb
         echo 'yes' | sudo chef env
-        ls -l /usr/bin/
-        sudo find / -name accepted_licenses
-        /usr/bin/chef --chef-license accept-silent
+        sudo /usr/bin/chef --chef-license accept-silent
         chef push prod

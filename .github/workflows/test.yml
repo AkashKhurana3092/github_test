@@ -1,4 +1,4 @@
-name: Conditional Workflow
+name: Conditional Workflows
 
 on:
   push:
@@ -9,16 +9,12 @@ jobs:
   my_job:
     runs-on: ubuntu-latest
     
-    outputs:
-      # Define an output variable to be used later
-      outputs: ${{ steps.check.outputs }}
-
     steps:
     - name: Check condition
       id: check
       run: |
-        a="hello"
-        if [ -z "$a" ]; then
+        a="nice"
+        if [ "$a" == "hello" ]; then
           echo "skip_step=true" >> $GITHUB_ENV
         else
           echo "skip_step=false" >> $GITHUB_ENV

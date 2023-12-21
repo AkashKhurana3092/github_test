@@ -34,6 +34,5 @@ jobs:
     - name: Installing Workstation
       run: |
         wget https://packages.chef.io/files/stable/chef-workstation/23.12.1055/ubuntu/22.04/chef-workstation_23.12.1055-1_amd64.deb; sudo dpkg -i chef-workstation_23.12.1055-1_amd64.deb
-        echo 'yes' | sudo chef env
-        sudo chef env --chef-license accept-silent
+        sudo chef env --chef-license accept-no-persist
         chef push prod

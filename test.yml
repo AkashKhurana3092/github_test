@@ -1,0 +1,37 @@
+name: Conditional Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    
+    outputs:
+      # Define an output variable to be used later
+      outputs: ${{ steps.check.outputs }}
+
+    steps:
+    - name: Check condition
+      id: check
+      run: |
+        a="hello"
+        if [ -z "$a" ]; then
+          echo "skip_step=true" >> $GITHUB_ENV
+        else
+          echo "skip_step=false" >> $GITHUB_ENV
+        fi
+
+    - name: Continue or skip based on condition
+      run: |
+        if [[ "${{ env.skip_step }}" == "true" ]]; then
+          echo "Condition is true. Skipping further steps."
+          exit 78  # This exit code (78) is specific to GitHub Actions to indicate a skipped step
+        else
+          echo "Condition is false. Continuing with the workflow."
+        fi
+
+    - name: Another step
+      run: echo "This step will run only if the condition is false"

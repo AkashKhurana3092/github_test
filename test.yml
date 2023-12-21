@@ -8,11 +8,7 @@ on:
 jobs:
   my_job:
     runs-on: ubuntu-latest
-
-    outputs:
-      # Define an output variable to be used later
-      outputs: ${{ steps.check.outputs }}
-
+    
     steps:
     - name: Check condition
       id: check

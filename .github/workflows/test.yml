@@ -22,9 +22,5 @@ jobs:
 
     - name: Continue or skip based on condition
       run: |
-        if [[ "${{ env.skip_step }}" == "true" ]]; then
           echo "Condition is true. Skipping further steps."
-        else
-          echo "Condition is false. Continuing with the workflow."
-        fi
       if: ${{ env.skip_step }} == 'true'

@@ -49,7 +49,7 @@ jobs:
 
       - name: Step A
         run: echo "This is Step A"
-        if: env.skip_step == 'false'
+        if: env.skip_step == 'true'
 
       - name: Step B
         run: echo "This is Step B"

@@ -23,4 +23,4 @@ jobs:
     - name: Continue or skip based on condition
       run: |
           echo "Condition is true. Skipping further steps."
-      if: ${{ env.skip_step }} == 'true'
+      if: ${{ env.skip_step }} == 'false'

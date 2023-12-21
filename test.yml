@@ -14,7 +14,7 @@ jobs:
       id: check
       run: |
         a="hello"
-        if [ -z "$a" ]; then
+        if [ "$a" == "hello" ]; then
           echo "skip_step=true" >> $GITHUB_ENV
         else
           echo "skip_step=false" >> $GITHUB_ENV
@@ -22,7 +22,7 @@ jobs:
 
     - name: Continue or skip based on condition
       run: |
-        if [[ "${{ env.skip_step }}" == "false" ]]; then
+        if [[ "${{ env.skip_step }}" == "true" ]]; then
           echo "Condition is true. Skipping further steps."
           exit 78  # This exit code (78) is specific to GitHub Actions to indicate a skipped step
         else

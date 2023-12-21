@@ -27,4 +27,4 @@ jobs:
         else
           echo "Condition is false. Continuing with the workflow."
         fi
-            if: ${{ env.skip_step }} == 'true'
+      if: ${{ env.skip_step }} == 'true'

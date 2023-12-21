@@ -13,7 +13,7 @@ jobs:
     - name: Check condition
       id: check
       run: |
-        a="hello"
+        a="ball"
         if [ "$a" == "hello" ]; then
           echo "skip_step=true" >> $GITHUB_ENV
         else

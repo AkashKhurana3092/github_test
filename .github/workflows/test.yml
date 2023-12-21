@@ -1,31 +1,3 @@
-# name: Conditional Workflows
-
-# on:
-#   push:
-#     branches:
-#       - main
-
-# jobs:
-#   my_job:
-#     runs-on: ubuntu-latest
-    
-#     steps:
-#     - name: Check condition
-#       id: check
-#       run: |
-#         a="ball"
-#         if [ "$a" == "hello" ]; then
-#           echo "skip_step=true" >> $GITHUB_ENV
-#         else
-#           echo "skip_step=false" >> $GITHUB_ENV
-#         fi
-
-#     - name: Continue or skip based on condition
-#       run: |
-#           echo "Condition is true. Skipping further steps."
-#       if: ${{ env.skip_step }} == 'false'
-
-
 name: Conditional Workflows
 
 on:
@@ -33,24 +5,33 @@ on:
     branches:
       - main
 
+# jobs:
+#   my_job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check condition
+#         id: check
+#         run: |
+#           a="ball"
+#           if [ "$a" == "hello" ]; then
+#             echo "skip_step=true" >> $GITHUB_ENV
+#           else
+#             echo "skip_step=false" >> $GITHUB_ENV
+#           fi
+
+#       - name: Step A
+#         run: echo "This is Step A"
+#         if: env.skip_step == 'true'
+
+#       - name: Step B
+#         run: echo "This is Step B"
+#         if: env.skip_step == 'false'
+
 jobs:
   my_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Check condition
-        id: check
-        run: |
-          a="ball"
-          if [ "$a" == "hello" ]; then
-            echo "skip_step=true" >> $GITHUB_ENV
-          else
-            echo "skip_step=false" >> $GITHUB_ENV
-          fi
-
-      - name: Step A
-        run: echo "This is Step A"
-        if: env.skip_step == 'true'
-
-      - name: Step B
-        run: echo "This is Step B"
-        if: env.skip_step == 'false'
+    - name: Installing Workstation
+      run: |
+        wget https://packages.chef.io/files/stable/chef-workstation/23.12.1055/ubuntu/22.04/chef-workstation_23.12.1055-1_amd64.deb; sudo dpkg -i chef-workstation_23.12.1055-1_amd64.deb
+        echo 'yes' | sudo chef env
